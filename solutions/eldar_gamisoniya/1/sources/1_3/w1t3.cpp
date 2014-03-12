@@ -7,7 +7,7 @@ typedef std::vector < std::pair < std::string, std::vector <bool> > > map_n_comp
 
 void bfs(map_n_comp & map, int n, int m, int startx, int starty)
 {
-	std::pair <int, int> dir [4] = {std::make_pair(-1, 0), std::make_pair(1, 0),
+	const std::pair <int, int> dir [4] = {std::make_pair(-1, 0), std::make_pair(1, 0),
 		std::make_pair(0, -1), std::make_pair(0, 1)};
 	int i, x, y;
 	std::queue <std::pair <int, int> > q;
@@ -31,8 +31,8 @@ void bfs(map_n_comp & map, int n, int m, int startx, int starty)
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	freopen(BINARY_DIR"input.txt", "r", stdin);
+	freopen(SOURCE_DIR"output.txt", "w", stdout);
 	map_n_comp map;
 	std::string s;
 	int n, m, i, j, k = 0;

@@ -3,8 +3,8 @@
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	freopen(BINARY_DIR"input.txt", "r", stdin);
+	freopen(SOURCE_DIR"output.txt", "w", stdout);
 	long n;
 	double d;
 	std::set <long> codes;

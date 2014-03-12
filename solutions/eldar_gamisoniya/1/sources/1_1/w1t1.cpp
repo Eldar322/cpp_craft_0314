@@ -20,8 +20,8 @@ void remake_str(std::string &s)
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	std::ifstream in("input.txt");
-	std::ofstream out("output.txt");
+	std::ifstream in(BINARY_DIR"input.txt");
+	std::ofstream out(SOURCE_DIR"output.txt");
 	std::string str, keystr;
 	std::getline(in, str);
 	remake_str(str);
