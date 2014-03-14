@@ -3,21 +3,21 @@
 
 int main()
 {
-	freopen(BINARY_DIR"input.txt", "r", stdin);
-	freopen(SOURCE_DIR"output.txt", "w", stdout);
+	freopen(BINARY_DIR"/input.txt", "r", stdin);
+	freopen(SOURCE_DIR"/output.txt", "w", stdout);
 	long n;
-	double d;
-	std::set <long> codes;
+	long double d;
+	std::set <long long> codes;
 	scanf("%ld", &n);
 	for (long i = 0; i < n; i++)
 	{
 		scanf("%lf", &d);
-		codes.insert(floor(d*10000));
+		codes.insert((long long) (d*10000));
 	}
 	while (! std::feof(stdin))
 	{
 		scanf("%lf", &d);
-		if (codes.find(floor(d*10000)) != codes.end())
+		if (codes.find((long long)(d*10000)) != codes.end())
 			printf("YES\n");
 		else
 			printf("NO\n");

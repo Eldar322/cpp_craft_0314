@@ -5,17 +5,17 @@
 
 typedef std::vector < std::pair < std::string, std::vector <bool> > > map_n_comp;
 
-void bfs(map_n_comp & map, int n, int m, int startx, int starty)
+void bfs(map_n_comp & map,const int n,const int m,const int startx,const int starty)
 {
 	const std::pair <int, int> dir [4] = {std::make_pair(-1, 0), std::make_pair(1, 0),
 		std::make_pair(0, -1), std::make_pair(0, 1)};
-	int i, x, y;
+	int x, y;
 	std::queue <std::pair <int, int> > q;
 	map[startx].second[starty] = true;
 	q.push(std::make_pair(startx, starty));
 	while (!q.empty())
 	{
-		for (i = 0; i < 4; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			x = q.front().first + dir[i].first;
 			y = q.front().second + dir[i].second;
@@ -31,11 +31,11 @@ void bfs(map_n_comp & map, int n, int m, int startx, int starty)
 
 int main()
 {
-	freopen(BINARY_DIR"input.txt", "r", stdin);
-	freopen(SOURCE_DIR"output.txt", "w", stdout);
+	freopen(BINARY_DIR"/input.txt", "r", stdin);
+	freopen(SOURCE_DIR"/output.txt", "w", stdout);
 	map_n_comp map;
 	std::string s;
-	int n, m, i, j, k = 0;
+	int n, m = 0;
 	std::vector <bool> v;
 	for (n = 0; std::getline(std::cin, s); n++)
 	{
@@ -45,8 +45,9 @@ int main()
 		}
 		map.push_back(std::make_pair(s, v));
 	}
-	for (i = 0; i < n; i++)
-		for (j = 0; j < m; j++)
+	int k = 0;
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
 			if (map[i].first[j] == 'o' && map[i].second[j] == false)
 			{
 				k++;
