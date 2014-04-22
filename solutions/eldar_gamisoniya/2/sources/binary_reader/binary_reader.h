@@ -3,14 +3,14 @@
 
 #include <string>
 #include <fstream>
-#include <boost\noncopyable.hpp>
+#include <boost/noncopyable.hpp>
 
 class bin_in:virtual protected boost::noncopyable
 {
 private:
 	std::ifstream in;
 public:		
-	bin_in(const std::string name);
+	bin_in(const std::string& name);
 	template <typename T>
 	void read(T &a){
 		in.read(reinterpret_cast< char* >( &a ), sizeof( T ) );

@@ -1,12 +1,7 @@
 @echo off
 
-rem don't forget to change path to Boost library
-rem set BOOST_ROOT=< path to boost >
-rem for example
-rem set BOOST_ROOT=d:/usr/boost_1_47_0
-
-set SOLUTION_NAME=puzzle_2_solution
-set BOOST_ROOT=d:/usr/boost_1_55_0
+set SOLUTION_NAME=puzzle_4_week_solutions
+set BOOST_ROOT=c:\Libraries\1.55.0\VC\11.0\
 
 set BUILD_TYPE=Debug
 if [%1]==[Release] (

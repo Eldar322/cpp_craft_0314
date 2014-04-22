@@ -30,15 +30,16 @@ bin_out& operator <<(bin_out &out, bin_data &Message){
 
 int main()
 {
-	bin_in in("input.txt");
-	bin_out out("output.txt");
+	bin_in in(BINARY_DIR "/input.txt");
+	bin_out out(BINARY_DIR "/output.txt");
 	if (!in.is_open() || !out.is_open())
 		return 1;
 	bin_data Current_Message;
 	unsigned Max_time = 0;
 	in >> Current_Message;
+	const int delta = 2;
 	while (!in.eof()){
-		if ((Current_Message.Time > Max_time - 2 || (Max_time < 2)) && Current_Message.Type < 5u)
+		if ((Current_Message.Time > Max_time - delta || (Max_time < delta)) && Current_Message.Type < 5u)
 			out << Current_Message;
 		Max_time = std::max(Current_Message.Time, Max_time);
 		in >> Current_Message;

@@ -1,7 +1,12 @@
 #include "binary_writer.h"
 
 bin_out::bin_out(const std::string name){
-	out.open( SOURCE_DIR "/"+name,std::ios_base::binary);
+	out.open( name,std::ios_base::binary);
+}
+
+void bin_out::write(const char* const str, const size_t length) const
+{
+	out.write(str, length);
 }
 
 bool bin_out::is_open() const{

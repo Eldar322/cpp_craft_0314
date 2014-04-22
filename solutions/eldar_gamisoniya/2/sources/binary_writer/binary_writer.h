@@ -4,22 +4,19 @@
 
 #include <string>
 #include <fstream>
-#include <boost\noncopyable.hpp>
+#include <boost/noncopyable.hpp>
 
 class bin_out:virtual protected boost::noncopyable
 {
 private:	
-	std::ofstream out;
+	mutable std::ofstream out;
 public:	
 	bin_out(std::string name);
 	template <typename T>
-	void write(T &a){
+	void write(T &a) const{
 		out.write(reinterpret_cast< char* >( &a ), sizeof( T ) );
 	}
-	template <>
-	void write<std::string>(std::string &a){
-		out.write(a.c_str(), a.length());
-	}
+	void write(const char* const str, const size_t length) const;
 	bool is_open() const;
 	~bin_out();
 };

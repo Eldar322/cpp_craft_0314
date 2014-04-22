@@ -24,13 +24,13 @@ bin_in& operator >>(bin_in &in, bin_data &Message){
 
 int main()
 {
-	bin_in in("input.txt");
-	bin_out out("output.txt");
+	bin_in in(BINARY_DIR "/input.txt");
+	bin_out out(BINARY_DIR "/output.txt");
 	if (!in.is_open() || !out.is_open())
 		return 1;
 		
 	const size_t max_bytes = 2048, max_msgtypes = 100001; 
-	bin_data Current_Message;
+	bin_data Current_Message;	
 	static unsigned last_second[max_msgtypes]
 	, num_of_seconds[max_msgtypes]
 	, num_of_bytes_now[max_msgtypes]
@@ -53,7 +53,7 @@ int main()
 	for (size_t i = 0; i <= max_msgtypes; i++)
 		if (num_of_seconds[i] > 0){
 			out.write(i);
-			long double t = (long double) num_of_msg[i] / num_of_seconds[i];
+			double t = (double) num_of_msg[i] / num_of_seconds[i];
 			out.write(t);
 		}
 }

@@ -31,7 +31,7 @@ bin_in& operator >>(bin_in &in, bin_data &Message){
 }
 
 bin_out& operator << (bin_out &out, bin_data &Message){
-	out.write(Message.stock_name);
+	out.write(Message.stock_name.c_str(), 9);
 	out.write(Message.date);
 	out.write(Message.price);
 	out.write(Message.volume);
@@ -41,8 +41,8 @@ bin_out& operator << (bin_out &out, bin_data &Message){
 
 int main()
 {
-	bin_in in("input.txt");
-	bin_out out("output.txt");
+	bin_in in(BINARY_DIR "/input.txt");
+	bin_out out(BINARY_DIR "/output.txt");
 	if (!in.is_open() || !out.is_open())
 		return 1;
 	bin_data Current_Message;
