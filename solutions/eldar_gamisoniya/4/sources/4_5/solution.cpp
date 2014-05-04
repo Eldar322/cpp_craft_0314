@@ -37,14 +37,12 @@ void task4_5::solution::solve()
 	while( true )
 	{
 		data_type::const_iterator it;
-		it = curr_vector;
 		{
 			boost::mutex::scoped_lock lock(mtx);
-			{
-				if( curr_vector == end_of_data )
-					return;
-				curr_vector++;
-			}
+			it = curr_vector;
+			if( curr_vector == end_of_data )
+				return;
+			curr_vector++;
 		}
 		if (it->empty())
 			return;

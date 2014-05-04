@@ -5,7 +5,7 @@
 
 typedef std::vector < std::pair < std::string, std::vector <bool> > > map_n_comp;
 
-void bfs(map_n_comp & map,const int n,const int m,const int startx,const int starty)
+void bfs(map_n_comp & map,const size_t n,const size_t m,const int startx,const int starty)
 {
 	const std::pair <int, int> dir [4] = {std::make_pair(-1, 0), std::make_pair(1, 0),
 		std::make_pair(0, -1), std::make_pair(0, 1)};
@@ -32,10 +32,10 @@ void bfs(map_n_comp & map,const int n,const int m,const int startx,const int sta
 int main()
 {
 	freopen(BINARY_DIR"/input.txt", "r", stdin);
-	freopen(SOURCE_DIR"/output.txt", "w", stdout);
+	freopen(BINARY_DIR"/output.txt", "w", stdout);
 	map_n_comp map;
 	std::string s;
-	int n, m = 0;
+	size_t n, m = 0;
 	std::vector <bool> v;
 	for (n = 0; std::getline(std::cin, s); n++)
 	{

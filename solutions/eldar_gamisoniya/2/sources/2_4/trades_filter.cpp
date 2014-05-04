@@ -3,10 +3,11 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <boost\integer.hpp>
 
 struct bin_data
 {
-	unsigned Type, Time, Len;
+	boost::uint32_t Type, Time, Len;
 	std::string Msg;
 	friend bin_in& operator >>(bin_in &in, bin_data &Message);
 	friend bin_out& operator <<(bin_out &out, bin_data &Message);
@@ -24,7 +25,7 @@ bin_out& operator <<(bin_out &out, bin_data &Message){
 	out.write(Message.Type);
 	out.write(Message.Time);
 	out.write(Message.Len);
-	out.write(Message.Msg);
+	out.write(Message.Msg.c_str(), Message.Msg.length());
 	return out;
 }
 
@@ -35,7 +36,7 @@ int main()
 	if (!in.is_open() || !out.is_open())
 		return 1;
 	bin_data Current_Message;
-	unsigned Max_time = 0;
+	boost::uint32_t Max_time = 0;
 	in >> Current_Message;
 	const int delta = 2;
 	while (!in.eof()){

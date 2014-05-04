@@ -21,7 +21,7 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	std::ifstream in(BINARY_DIR"/input.txt");
-	std::ofstream out(SOURCE_DIR"/output.txt");
+	std::ofstream out(BINARY_DIR"/output.txt");
 	std::string str, keystr;
 	std::getline(in, str);
 	remake_str(str);

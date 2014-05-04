@@ -3,12 +3,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <boost\integer.hpp>
 
 struct bin_data
 {
 	std::string stock_name, date_name;
 	double price, vwap, f1, t1, f2, f3, f4;
-	unsigned volume, date;
+	boost::uint32_t volume, date;
 	friend bin_in& operator >>(bin_in &in, bin_data &Message);
 	friend bin_out& operator <<(bin_out &out, bin_data &Message);
 };
@@ -16,7 +17,7 @@ struct bin_data
 bin_in& operator >>(bin_in &in, bin_data &Message){
 	in.read(Message.stock_name, 8);
 	in.read(Message.date_name, 8);
-	unsigned y, m , d;
+	boost::uint32_t y, m , d;
 	sscanf(Message.date_name.c_str(), "%4d%2d%2d", &y, &m, &d);
 	Message.date = (y-1)*372 + (m-1)*31 +d;
 	in.read(Message.price);

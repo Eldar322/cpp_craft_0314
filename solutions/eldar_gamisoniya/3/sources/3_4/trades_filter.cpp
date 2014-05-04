@@ -10,11 +10,11 @@ class task
 	boost::mutex mtx;
 	int file_number;
 	static const int file_count = 1000;
-	static const unsigned thread_count = 4;
+	static const boost::uint32_t thread_count = 4;
 
 	struct bin_data
 	{
-		unsigned Type, Time, Len;
+		boost::uint32_t Type, Time, Len;
 		std::string Msg;
 		bin_data():Len(0)
 		{
@@ -68,7 +68,7 @@ class task
 				out.open(get_filename("output", file_number));
 			}
 			bin_data Current_Message;
-			unsigned Max_time = 0;
+			boost::uint32_t Max_time = 0;
 			in >> Current_Message;
 			const int delta = 2;
 			while (!in.eof())

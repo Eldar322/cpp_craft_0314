@@ -11,19 +11,19 @@ class task
 	boost::mutex mtx;
 	int file_number;
 	static const int file_count = 1000;
-	static const unsigned thread_count = 4;
+	static const boost::uint32_t thread_count = 4;
 	static const size_t max_bytes = 2048, max_msgtypes = 100001; ;
-	std::vector<unsigned> num_of_seconds
+	std::vector<boost::uint32_t> num_of_seconds
 			, num_of_msg;
 
 	struct bin_data
 	{
-		unsigned Type, Time, Len;
+		boost::uint32_t Type, Time, Len;
 		std::string Msg;
 		bin_data():Len(0)
 		{
 		}
-		unsigned get_size_in_bytes() const
+		boost::uint32_t get_size_in_bytes() const
 		{
 			return sizeof(int)*3+Len;
 		}
@@ -64,7 +64,7 @@ class task
 				return;
 			}
 			bin_data Current_Message;	
-			std::vector<unsigned> last_second(max_msgtypes)
+			std::vector<boost::uint32_t> last_second(max_msgtypes)
 				, num_of_bytes_now(max_msgtypes);
 			in >> Current_Message;
 			while (!in.eof())
@@ -103,11 +103,11 @@ public:
 		}
 		threads.join_all();
 		bin_out out(BINARY_DIR"/output.txt");
-		for (size_t i = 0; i < max_msgtypes; i++)
+		for (boost::uint32_t i = 0; i < max_msgtypes; i++)
 			if (num_of_msg[i] > 0)
 			{
 				out.write(i);
-				double t = (double) num_of_msg[i] / num_of_seconds[i];
+				const double t = static_cast<double>( num_of_msg[i] / num_of_seconds[i]);
 				out.write(t);
 			}
 	}

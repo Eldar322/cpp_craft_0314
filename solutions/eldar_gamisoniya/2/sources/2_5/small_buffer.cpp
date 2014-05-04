@@ -3,12 +3,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <boost\integer.hpp>
 
 struct bin_data
 {
-	unsigned Type, Time, Len;
+	boost::uint32_t Type, Time, Len;
 	std::string Msg;
-	unsigned get_size_in_bytes() const{
+	boost::uint32_t get_size_in_bytes() const{
 		return sizeof(int)*3+Len;
 	}
 	friend bin_in& operator >>(bin_in &in, bin_data &Message);
@@ -29,9 +30,9 @@ int main()
 	if (!in.is_open() || !out.is_open())
 		return 1;
 		
-	const size_t max_bytes = 2048, max_msgtypes = 100001; 
+	const boost::uint32_t max_bytes = 2048, max_msgtypes = 100001; 
 	bin_data Current_Message;	
-	static unsigned last_second[max_msgtypes]
+	static boost::uint32_t last_second[max_msgtypes]
 	, num_of_seconds[max_msgtypes]
 	, num_of_bytes_now[max_msgtypes]
 	, num_of_msg[max_msgtypes];
@@ -50,10 +51,10 @@ int main()
 		in >> Current_Message;
 	}
 
-	for (size_t i = 0; i <= max_msgtypes; i++)
+	for (boost::uint32_t i = 0; i <= max_msgtypes; i++)
 		if (num_of_seconds[i] > 0){
 			out.write(i);
-			double t = (double) num_of_msg[i] / num_of_seconds[i];
+			const double t = static_cast<double>( num_of_msg[i] / num_of_seconds[i]);
 			out.write(t);
 		}
 }

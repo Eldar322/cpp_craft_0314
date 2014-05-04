@@ -11,7 +11,7 @@ bool bin_in::is_open() const{
 void bin_in::read(std::string &s,const size_t length){
 	char* t =  new char[length + 1];
 	in.read( t, length );
-	s.assign(t, length);
+	s.assign(t);
 	delete [] t;
 }
 
